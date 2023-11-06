@@ -1,0 +1,7 @@
+
+*Continuous integration:
+- CI is a devops software development practice where developers regularly merge their code changes 
+	into a central repository, after which automated builds and tests are run.
+- The goal of CI is to detect defects at very early stage so it does not multiply.
+*Continuous deployment:
+- CD is a software develoment pratice where code changes are automatically prepared for a relesw to prodoction.
