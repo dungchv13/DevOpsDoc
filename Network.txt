@@ -1,0 +1,25 @@
+
+***************** COMMAND ******************
+ifconfig || ip addr show
+
+-kiem tra ket noi toi db01
+ping 192.268.40.12
+
+sua file /etc/hosts  them dong "192.268.40.12 db01"
+ping db01
+
+-xem tat cac TCP open port
+netstat -antp
+ss -tunlp
+-scan cac port dang open
+nmap db01
+
+
+-dns query
+dig www.googe.com
+
+-show gateway
+route -n
+arp
+mtr www.google.com
+
