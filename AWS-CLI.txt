@@ -1,0 +1,36 @@
+######### KEY-PAIR ####################
+
+aws ec2 create-key-pair --key-name KeyToSuccess --query KeyMaterial --output text > KeyToSuccess.pem
+
+aws ec2 delete-key-pair KeyToSuccess
+
+######### SECURITY-GROUP ##############
+create-security-group --description "my-cli-sg" --group-name my-cli-sg --output text > my-cli-sg.txt
+
+curl https://checkip.amazonaws.com
+
+aws ec2 authorize-security-group-ingress --group-id sg-0512bb661ec27a780 --protocol tcp --port 22 --cidr 171.241.49.241/32
+
+aws ec2 authorize-security-group-ingress --group-id sg-0512bb661ec27a780 --protocol tcp --port 22-8000 --cidr 0.0.0.0/0
+
+aws ec2 describe-security-groups --group-names my-cli-sg
+
+aws ec2 delete-security-group --group-name my-cli-sg
+######### INSTANCES ####################
+aws ec2 run-instances --image-id ami-0df2a11dd1fe1f8e3 --count 1 --instance-type t2.micro --keyname KeyToSuccess --security-groups my-cli-sg
+
+aws ec2 create-tags --resources <Instance-Id>--tags Key=Name,Value=<value>
+aws ec2 create-tags --resources i-0b5eea1724d675dd4 --tags Key=Name,Value=web01
+
+aws ec2 terminate-instances --instance-ids <Instance-Id>
+aws ec2 terminate-instances --instance-ids i-0b5eea1724d675dd4
+
+######## VOLUMES ######################
+fdisk -l
+df -h
+fdisk /dev/xvdf
+m
+n -> p -> 1 -> 3GB -> p -> w
+
+
+
