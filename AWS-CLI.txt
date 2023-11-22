@@ -1,8 +1,8 @@
 ######### KEY-PAIR ####################
 
-aws ec2 create-key-pair --key-name KeyToSuccess --query KeyMaterial --output text > KeyToSuccess.pem
+aws ec2 create-key-pair --key-name aws-cli-key --query KeyMaterial --output text > aws-cli-key.pem
 
-aws ec2 delete-key-pair KeyToSuccess
+aws ec2 delete-key-pair aws-cli-key
 
 ######### SECURITY-GROUP ##############
 create-security-group --description "my-cli-sg" --group-name my-cli-sg --output text > my-cli-sg.txt
