@@ -1,0 +1,7 @@
+sonar:
+	tk: admin
+	pw: newpassword
+	token for jenkins: 43fb0f0e1fd20bffab8e0d2f4b728e3a15f081e9
+	
+OracleJDK11: /usr/lib/jvm/java-11-openjdk-amd64
+MAVEN3

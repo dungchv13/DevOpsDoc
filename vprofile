@@ -1,0 +1,20 @@
+ami-0cdb8266fcd5d3d63
+rLNyabZQHzrqgl3LnwSg
+https://www.tooplate.com/zip-templates/2135_mini_finance.zip\
+
+
+
+vprofile-mysql-rds.c5xmtpxbjpas.us-east-1.rds.amazonaws.com
+
+rLNyabZQHzrqgl3LnwSg
+
+apt install mysql-client -y
+
+mysql -h vprofile-mysql-rds.c5xmtpxbjpas.us-east-1.rds.amazonaws.com -u admin -prLNyabZQHzrqgl3LnwSg
+
+
+//key
+AKIASDSSBO7DMJIXPKPW
+
+//secret
+cVmEcLK8QTtwGFJxSbGImhiGlWYut52w21hNRPwa

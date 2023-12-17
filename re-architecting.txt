@@ -1,0 +1,19 @@
+######## Re-Architecting ##########
+
+######## RDS-DB 		 ##########
+	+ db-admin: admin
+	+ db-pw: nX1i0yTcp9mpTmoVYq3V
+	+ endpoint: vprofile-rds-mysql.c5xmtpxbjpas.us-east-1.rds.amazonaws.com
+	- run instance: 	+ apt install mysql-client
+						+ mysql -h vprofile-rds-mysql.c5xmtpxbjpas.us-east-1.rds.amazonaws.com
+						
+						
+######## rabbit-MQ		 ##########
+	+ username: rabbit
+	+ password: dungnqm96116
+	+ endpoint: b-b18b4d47-68bb-4aff-9dc5-74e512cc58d8.mq.us-east-1.amazonaws.com
+	
+
+	
+######## ElasticCache	 ##########
+	+ endpoint: vprofile-elasticcache-svc.uzy1aq.cfg.use1.cache.amazonaws.com

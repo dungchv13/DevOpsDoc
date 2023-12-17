@@ -1,0 +1,83 @@
+def COLOR_MAP = [
+	'SUCCESS': 'good',
+	'FAILURE': 'danger',
+]
+pipeline {
+	agent any
+	tools {
+		maven "MAVEN3"
+		jdk "OpenJDK8"
+	}
+	
+	environment {
+        registryCredential = 'ecr:us-east-1:aws-cre'
+        appRegistry = "145127208902.dkr.ecr.us-east-1.amazonaws.com/vprofileappimg"
+        vprofileRegistry = "https://145127208902.dkr.ecr.us-east-1.amazonaws.com"
+		cluster = "vprofile2"
+		service = "vprofileappsvc"
+    }
+	
+	stages {
+		
+		stage('Fetch Code') {
+			steps {
+				git branch: 'docker', url: 'https://github.com/devopshydclub/vprofile-project.git'
+			}
+		}
+		
+		stage('Build') {
+			steps {
+				sh 'mvn install -DskipTest'
+			}
+			
+			post {
+				success {
+					echo 'Archiving artifacts now.'
+					archiveArtifacts artifacts: '**/*.war'
+				}
+			}
+		}
+
+		stage('UNIT TEST') {
+			steps {
+				sh 'mvn test'
+			}
+		}
+		
+		stage('Build App Image') {
+			steps {
+				script {
+					dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+				}
+			}
+		}
+		
+		stage('Upload App Image') {
+          steps{
+            script {
+              docker.withRegistry( vprofileRegistry, registryCredential ) {
+                dockerImage.push("$BUILD_NUMBER")
+                dockerImage.push('latest')
+              }
+            }
+          }
+		}
+		
+		stage('Deploy to ECS') {
+          steps{
+            withAWS(credentials: 'aws-cre', region: 'us-east-1') {
+				sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+			}
+          }
+		}
+    }
+	
+	post {
+		always {
+			echo 'Slack Notifications.'
+			slackSend channel: '#rainmmker',
+				color: COLOR_MAP[currentBuild.currentResult],
+				message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+			}
+	}
+}

@@ -18,3 +18,9 @@ mount -a
 df -h
 yum install mariadb-server -y
 systemctl start mariadb
+#########EFS########
+yum install -y amazon-efs-utils
+
+file-system-id efs-mount-point efs _netdev,tls,accesspoint=access-point-id 0 0
+
+fs-03ab874cb02df5954 /var/www/html/images/ efs _netdev,tls,accesspoint=fsap-0dc7820092675a0ec 0 0

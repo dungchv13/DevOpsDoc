@@ -1,0 +1,14 @@
+############### git #############
+git config --global user.name "dfgdfgdf"
+git config --global user.email dfgdfgdf@sdfsdf.com
+
+
+git log : history commit
+git show + $ID : show what change
+
+
+git rm + $file: remove file
+
+######### .gitignore #########
+
+######### git cherat sheeet ######
